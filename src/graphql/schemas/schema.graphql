@@ -1,0 +1,57 @@
+type Query {
+  users: [User!]
+  user(id: ID!): User!
+  products: [Product!]
+  product(id: ID!) : Product!
+}
+
+type User {
+  _id: ID!,
+  name: String!
+  username: String!
+  email: String!
+}
+
+type Product {
+  _id: ID!,
+  title: String!,
+  description: String!,
+  price: String!
+}
+
+input CreateProductInput {
+  title: String!,
+  description: String!,
+  price: String!
+}
+
+input UpdateProductInput {
+  title: String,
+  description: String,
+  price: String
+}
+
+input CreateUser {
+  name: String!
+  email: String!
+  password: String!
+  username: String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+type AuthPayload {
+  token: String
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput) : Product
+  deleteProduct(id: ID!): Product
+  updateProduct(id: ID!, input: UpdateProductInput): Product
+  registration(input: CreateUser): User
+  login(input: LoginInput): AuthPayload
+  logout: String
+}
